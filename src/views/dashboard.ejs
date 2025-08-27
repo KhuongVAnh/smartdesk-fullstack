@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartdesk Dashboard</title>
+</head>
+
+<body>
+    <h1>Danh sách thiết bị</h1>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>UID</th>
+            <th>Name</th>
+            <th>Last Seen</th>
+        </tr>
+        <% devices.forEach(d=> { %>
+            <tr>
+                <td>
+                    <a href="/readings/<%= d.id %>">
+                        <%= d.id %>
+                    </a>
+                </td>
+                <td>
+                    <%= d.device_uid %>
+                </td>
+                <td>
+                    <%= d.name %>
+                </td>
+                <td>
+                    <%= d.last_seen %>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+</body>
+
+</html>

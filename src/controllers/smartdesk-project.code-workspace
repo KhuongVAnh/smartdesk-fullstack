@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "smartdesk",
+			"path": "../../smartdesk"
+		}
+	],
+	"settings": {}
+}
