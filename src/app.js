@@ -11,6 +11,11 @@ app.set('view engine', 'ejs');
 // phục vụ file tĩnh trong thư mục public
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.json()); // để đọc JSON body
+
+const apiRoutes = require('./routes/api');
+app.use('/api/v1', apiRoutes);
+
 // route test
 app.get('/', (req, res) => {
   res.render('index', { title: 'Smartdesk Project' });
