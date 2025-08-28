@@ -1,15 +1,16 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
-#include "DHT.h"
+#include <DHT.h>
+#include <DHT_U.h>
 
 #define DHTPIN 4
-#define DHTTYPE DHT22
+#define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 
 const char *ssid = "Nhan Home";
 const char *password = "nhanhome";
 
-const char *serverUrl = "http://192.168.1.42:4000/api/v1/telemetry";
+const char *serverUrl = "http://192.168.1.65:4000/api/v1/telemetry";
 String token = "706b9e7403f5dd1b29bcc615f037056d"; // token đã nhận khi register
 
 void setup()
@@ -60,6 +61,7 @@ void loop()
         String res = http.getString();
         Serial.println("Response: " + res);
       }
+      Serial.printf("payload: %s", payload.c_str());
     }
     else
     {

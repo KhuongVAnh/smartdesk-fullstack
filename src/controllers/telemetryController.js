@@ -39,6 +39,17 @@ exports.ingest = async (req, res) => {
     // Cập nhật last_seen
     await pool.query(`UPDATE devices SET last_seen = NOW() WHERE id = ?`, [device_id]);
 
+    // Emit sự kiện realtime tới client
+    const io = req.app.get('io'); // req có reference đến app nên có thể dùng .app, io là 1 biến được app lưu
+    io.emit('new-reading', {  // tạo 1 sự kiện gửi có tên new-reading, nếu client muốn nhận cần gọi đúng tên sk muốn nhận: on(new-reading)
+      device_id,
+      temperature,
+      humidity,
+      light: light || 0,
+      noise: noise || 0,
+      ts: new Date().toISOString()
+    });
+
     res.json({ ok: true });
   } catch (err) {
     console.error(err);
