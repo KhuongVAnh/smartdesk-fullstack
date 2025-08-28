@@ -73,5 +73,22 @@ socket.on('new-reading', (data) => {
 
         // ve chart       
         myChart.update();
+
     }
 });
+
+// Kiểm tra ngưỡng và hiển thị cảnh báo
+let alertBox = document.getElementById("alert-box");
+if (!alertBox) {
+    alertBox = document.createElement("div");
+    alertBox.id = "alert-box";
+    document.body.insertBefore(alertBox, document.body.firstChild);
+}
+
+if (tempData[tempData.length - 1] > 30) {
+    alertBox.innerHTML = `<p style="color:red;">⚠️ Cảnh báo: Nhiệt độ quá cao (${tempData[tempData.length - 1]}°C)</p>`;
+} else if (humData[humData.length - 1] < 30) {
+    alertBox.innerHTML = `<p style="color:orange;">⚠️ Cảnh báo: Độ ẩm thấp (${humData[humData.length - 1]}%)</p>`;
+} else {
+    alertBox.innerHTML = ""; // không cảnh báo
+}
