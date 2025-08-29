@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa thiết bị</title>
+</head>
+
+<body>
+    <h1>Sửa thiết bị</h1>
+    <form action="/devices/edit/<%= device.id %>" method="post">
+        <p>UID: <%= device.device_uid %>
+        </p>
+        <label>Tên: <input type="text" name="name" value="<%= device.name %>"></label><br>
+        <button type="submit">Cập nhật</button>
+    </form>
+    <p><a href="/devices">⬅ Quay lại danh sách</a></p>
+</body>
+
+</html>

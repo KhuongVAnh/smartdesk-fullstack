@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Devices</title>
+</head>
+
+<body>
+    <h1>Quản lý thiết bị</h1>
+    <a href="/devices/new">➕ Thêm thiết bị mới</a>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>UID</th>
+            <th>Tên</th>
+            <th>Token</th>
+            <th>Last Seen</th>
+            <th>Hành động</th>
+        </tr>
+        <% devices.forEach(d=> { %>
+            <tr>
+                <td>
+                    <%= d.id %>
+                </td>
+                <td>
+                    <%= d.device_uid %>
+                </td>
+                <td>
+                    <%= d.name %>
+                </td>
+                <td>
+                    <%= d.token %>
+                </td>
+                <td>
+                    <%= d.last_seen %>
+                </td>
+                <td>
+                    <a href="/devices/edit/<%= d.id %>">Sửa</a> |
+                    <a href="/devices/delete/<%= d.id %>" onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
+
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+    <p><a href="/dashboard">⬅ Quay lại Dashboard</a></p>
+</body>
+
+</html>

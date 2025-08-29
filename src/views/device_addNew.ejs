@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm thiết bị mới</title>
+</head>
+
+<body>
+    <h1>Thêm thiết bị mới</h1>
+    <form action="/devices/new" method="post">
+        <label>UID: <input type="text" name="device_uid" required></label><br>
+        <label>Tên: <input type="text" name="name"></label><br>
+        <button type="submit">Thêm</button>
+    </form>
+    <p><a href="/devices">⬅ Quay lại danh sách</a></p>
+</body>
+
+</html>
