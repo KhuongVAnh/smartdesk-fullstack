@@ -56,6 +56,19 @@
             </div>
         </div>
 
+        <div class="mb-3">
+            <label for="rangeSelect" class="form-label">📅 Chọn khoảng thời gian:</label>
+            <select id="rangeSelect" class="form-select w-auto d-inline-block">
+                <option value="24h">24 giờ gần nhất</option>
+                <option value="7d">7 ngày gần nhất</option>
+                <option value="custom">Tùy chỉnh...</option>
+            </select>
+
+            <input type="date" id="startDate" class="form-control d-inline-block w-auto" style="display:none;">
+            <input type="date" id="endDate" class="form-control d-inline-block w-auto" style="display:none;">
+            <button id="applyRange" class="btn btn-primary" style="display:none;">Áp dụng</button>
+        </div>
+
         <!-- Biểu đồ -->
         <div class="card">
             <div class="card-header bg-dark text-white">📈 Biểu đồ</div>

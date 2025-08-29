@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <title>Sửa thiết bị</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Sửa thiết bị</h1>
-    <form action="/devices/edit/<%= device.id %>" method="post">
-        <p>UID: <%= device.device_uid %>
-        </p>
-        <label>Tên: <input type="text" name="name" value="<%= device.name %>"></label><br>
-        <button type="submit">Cập nhật</button>
-    </form>
-    <p><a href="/devices">⬅ Quay lại danh sách</a></p>
+    <div class="container mt-5" style="max-width: 600px;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                ✏️ Sửa thiết bị
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/devices/edit/<%= device.id %>">
+                    <div class="mb-3">
+                        <label class="form-label">UID:</label>
+                        <input type="text" class="form-control" value="<%= device.device_uid %>" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Tên thiết bị:</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<%= device.name %>"
+                            required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">💾 Cập nhật</button>
+                    <a href="/devices" class="btn btn-secondary ms-2">⬅ Quay lại danh sách</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

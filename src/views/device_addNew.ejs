@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <title>Thêm thiết bị mới</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Thêm thiết bị mới</h1>
-    <form action="/devices/new" method="post">
-        <label>UID: <input type="text" name="device_uid" required></label><br>
-        <label>Tên: <input type="text" name="name"></label><br>
-        <button type="submit">Thêm</button>
-    </form>
-    <p><a href="/devices">⬅ Quay lại danh sách</a></p>
+    <div class="container mt-5" style="max-width: 600px;">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                ➕ Thêm thiết bị mới
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/devices/new">
+                    <div class="mb-3">
+                        <label for="uid" class="form-label">UID:</label>
+                        <input type="text" class="form-control" id="uid" name="device_uid" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Tên thiết bị:</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">💾 Thêm</button>
+                    <a href="/devices" class="btn btn-secondary ms-2">⬅ Quay lại danh sách</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

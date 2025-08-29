@@ -13,11 +13,25 @@ let lightData = [];
 let noiseData = [];
 
 // Hàm load dữ liệu ban đầu từ API JSON
-async function loadReadings() {
-    const res = await fetch(`/api/v1/readings/${deviceId}`);
+async function loadReadings(rangeType = "all", start = null, end = null) {
+    let url = `/api/v1/readings/${deviceId}`;
+
+    if (rangeType === "24h") {
+        const now = new Date();
+        const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+        url = `/api/v1/readings/${deviceId}/range?start=${yesterday.toISOString()}&end=${now.toISOString()}`;
+    } else if (rangeType === "7d") {
+        const now = new Date();
+        const lastWeek = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        url = `/api/v1/readings/${deviceId}/range?start=${lastWeek.toISOString()}&end=${now.toISOString()}`;
+    } else if (rangeType === "custom" && start && end) {
+        url = `/api/v1/readings/${deviceId}/range?start=${start}&end=${end}`;
+    }
+
+    const res = await fetch(url);
     const data = await res.json();
 
-    // data là mảng readings từ server
+    // Cập nhật mảng dữ liệu
     labels = data.map(r => r.ts).reverse();
     tempData = data.map(r => r.temperature).reverse();
     humData = data.map(r => r.humidity).reverse();
@@ -172,6 +186,26 @@ socket.on('new-reading', (data) => {
         table.deleteRow(table.rows.length - 1); // xóa row cuối
 
     }
+});
+
+document.getElementById("rangeSelect").addEventListener("change", (e) => {
+    const val = e.target.value;
+    if (val === "custom") {
+        document.getElementById("startDate").style.display = "inline-block";
+        document.getElementById("endDate").style.display = "inline-block";
+        document.getElementById("applyRange").style.display = "inline-block";
+    } else {
+        document.getElementById("startDate").style.display = "none";
+        document.getElementById("endDate").style.display = "none";
+        document.getElementById("applyRange").style.display = "none";
+        loadReadings(val);
+    }
+});
+
+document.getElementById("applyRange").addEventListener("click", () => {
+    const start = document.getElementById("startDate").value;
+    const end = document.getElementById("endDate").value;
+    loadReadings("custom", start, end);
 });
 
 // Gọi hàm load khi trang vừa mở
