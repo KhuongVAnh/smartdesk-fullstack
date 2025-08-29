@@ -9,6 +9,8 @@ const deviceId = Number(chartDiv.dataset.deviceid);
 let labels = [];
 let tempData = [];
 let humData = [];
+let lightData = [];
+let noiseData = [];
 
 // Hàm load dữ liệu ban đầu từ API JSON
 async function loadReadings() {
@@ -19,6 +21,8 @@ async function loadReadings() {
     labels = data.map(r => r.ts).reverse();
     tempData = data.map(r => r.temperature).reverse();
     humData = data.map(r => r.humidity).reverse();
+    lightData = data.map(r => r.light).reverse();
+    noiseData = data.map(r => r.noise).reverse();
 
     initChart();
     initTable(data);
@@ -30,36 +34,61 @@ function initChart() {
     window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: labels,
+            labels,
             datasets: [
                 {
-                    label: 'Độ ẩm (%)',
-                    data: humData,
-                    borderColor: 'blue',
-                    fill: false
-                },
-                {
-                    label: 'Nhiệt độ (°C)',
+                    label: '🌡️ Nhiệt độ (°C)',
                     data: tempData,
-                    borderColor: 'red',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     fill: false,
                     tension: 0.3
+                },
+                {
+                    label: '💧 Độ ẩm (%)',
+                    data: humData,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: '💡 Ánh sáng',
+                    data: lightData,
+                    borderColor: 'rgba(255, 206, 86, 1)',     // vàng
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    fill: false,
+                    tension: 0.3,
+                    yAxisID: 'y1'  // vẽ trên trục phụ
+                },
+                {
+                    label: '🔊 Tiếng ồn',
+                    data: noiseData,
+                    borderColor: 'rgba(75, 192, 192, 1)',     // xanh ngọc
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: false,
+                    tension: 0.3,
+                    yAxisID: 'y1'  // vẽ trên trục phụ
                 }
             ]
         },
         options: {
             responsive: true,
+            interaction: { mode: 'index', intersect: false },
             scales: {
                 x: {
                     type: 'time',
-                    time: {
-                        unit: 'second',
-                        tooltipFormat: 'HH:mm:ss'
-                    },
+                    time: { unit: 'minute', tooltipFormat: 'HH:mm:ss' },
                     title: { display: true, text: 'Thời gian' }
                 },
                 y: {
-                    title: { display: true, text: 'Giá trị' }
+                    position: 'left',
+                    title: { display: true, text: 'Nhiệt độ / Độ ẩm' }
+                },
+                y1: {
+                    position: 'right',
+                    grid: { drawOnChartArea: false },
+                    title: { display: true, text: 'Ánh sáng / Tiếng ồn' }
                 }
             }
         }
@@ -93,16 +122,20 @@ function updateAlert() {
         return;
     }
 
-    // Hiển thị giá trị cuối (nếu bạn muốn thấy luôn)
-    // alertBox.textContent = `${lastTemp}`;
-
     if (lastTemp > 30) {
-        alertBox.innerHTML = `<p style="color:red;">⚠️ Cảnh báo: Nhiệt độ quá cao (${lastTemp}°C)</p>`;
+        alertBox.innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ⚠️ Nhiệt độ quá cao: ${lastTemp}°C
+    </div>`;
     } else if (lastHum < 30) {
-        alertBox.innerHTML = `<p style="color:orange;">⚠️ Cảnh báo: Độ ẩm thấp (${lastHum}%)</p>`;
+        alertBox.innerHTML = `
+    <div class="alert alert-warning" role="alert">
+      ⚠️ Độ ẩm thấp: ${lastHum}%
+    </div>`;
     } else {
-        alertBox.innerHTML = ""; // không cảnh báo
+        alertBox.innerHTML = "";
     }
+
 }
 
 socket.on('new-reading', (data) => {
@@ -113,11 +146,15 @@ socket.on('new-reading', (data) => {
         labels.push(data.ts);
         tempData.push(data.temperature);
         humData.push(data.humidity);
+        lightData.push(data.light);
+        noiseData.push(data.noise);
 
         // xóa đi dữ liệu đầu
         labels.shift();
         tempData.shift();
         humData.shift();
+        lightData.shift();
+        noiseData.shift();
 
         // update chart
         window.myChart.update();
