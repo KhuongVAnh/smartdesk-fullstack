@@ -57,7 +57,7 @@ const postNewDevice = (req, res) => {
     try {
         const { device_uid, name } = req.body;
         createDevice(device_uid, name)
-        res.redirect('/devices');
+        res.redirect('/dashboard');
     } catch (err) {
         console.error(err);
         res.send("Lỗi khi thêm thiết bị");
@@ -84,7 +84,7 @@ const postEditDevice = async (req, res) => {
 
         await updateDeviceNameByID(name, deviceId)
 
-        res.redirect('/devices');
+        res.redirect('/dashboard');
     } catch (err) {
         console.error(err);
         res.send("Lỗi khi cập nhật thiết bị");
@@ -95,7 +95,7 @@ const getDeleteAction = async (req, res) => {
     try {
         const deviceId = req.params.id;
         await deleteDeviceByID(deviceId)
-        res.redirect('/devices');
+        res.redirect('/dashboard');
     } catch (err) {
         console.error(err);
         res.send("Lỗi khi xóa thiết bị");

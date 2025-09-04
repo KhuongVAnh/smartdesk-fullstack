@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
   <meta charset="UTF-8">
-  <title><%= title %></title>
+  <title>Smartdesk Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-  <h1>Welcome to <%= title %> 🚀</h1>
-  <p>Server chạy bằng Express + EJS thành công!</p>
+
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="/">Smartdesk</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">🏠 Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">📊 Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/devices">🔧 Devices</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="container text-center mt-5">
+    <div class="card shadow-lg p-5">
+      <h1 class="display-4 text-primary mb-3">
+        🚀 Welcome to <span class="fw-bold">Smartdesk Project</span>
+      </h1>
+      <p class="lead text-muted mb-4">
+        Server chạy bằng <strong>Express + EJS</strong> đã khởi động thành công!
+      </p>
+
+      <a href="/dashboard" class="btn btn-lg btn-success">
+        👉 Vào Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
