@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/login_register.css">
+    <title>Login-Registration-Form</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+
+        <div class="form-container sign-in">
+            <form method="POST" action="/auth/login">
+                <h1>Login In</h1>
+
+                <div class="input">
+                    <input type="text" placeholder="Username">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="Password">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <a href="#" style="text-decoration: underline;">Forget Password?</a>
+                <button type="submit">Login In</button>
+                <span>or login with social flatforms</span>
+                <div class="social-icons">
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-container sign-up">
+            <form method="POST" action="/auth/register">
+                <h1>Registration</h1>
+
+                <div class="input">
+                    <input type="text" placeholder="Username">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input">
+                    <input type="text" placeholder="example@gmail.com">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input">
+                    <input type="text" placeholder="Password">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <button type="submit">Create Account</button>
+                <span>or login with social flatforms</span>
+                <div class="social-icons">
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="toggle">
+            <div class="toggle-panel toggle-left">
+                <h1>Wellcome Back!</h1>
+                <span>Already have an account?</span>
+                <a href="/auth/register"><button id="login">Login In</button></a>
+            </div>
+            <div class="toggle-panel  toggle-right">
+                <h1>Hello, Wellcome!</h1>
+                <span>Don't have an account?</span>
+                <button id="register">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/login_register.js"></script>
+</body>
+
+</html>

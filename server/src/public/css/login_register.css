@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat: wght@300; 400; 500; 600; 700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*kích thước phần tử sẽ bao gồm cả padding border, khi thêm pad bor content sẽ tự co lại nhường chỗ cho pad bor*/
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    /* background: linear-gradient(90deg, #adc7ef, #6f92e3); */
+    background: linear-gradient(90deg, #e7d0ee, #b3c6f4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    width: 720px;
+    height: 480px;
+    max-width: 100vh;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border: none;
+    outline: none;
+    padding: none;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+}
+
+.form-container {
+    background-color: #fff;
+    width: 50%;
+    height: 100%;
+    border-radius: 30px;
+    position: absolute;
+    transition: all 1s ease-in-out;
+}
+
+.container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+    border-radius: 30px;
+}
+
+.container p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+}
+
+.container a {
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container span {
+    color: #333;
+    font-size: 13px;
+}
+
+.container input {
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    width: 100%;
+    outline: none;
+}
+
+.input {
+    background-color: #eee;
+    border: none;
+    margin: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    display: flex;
+}
+
+.input i {
+    color: #848b9a;
+}
+
+.social-icons i {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.social-icons {
+    display: flex;
+}
+
+.container button {
+    background-color: #2e3b9e;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.sign-in {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+    /*ở trên*/
+    opacity: 1;
+}
+
+.sign-up {
+    left: 0;
+    width: 50%;
+    z-index: 1;
+    /*ở dưới*/
+    opacity: 0;
+}
+
+.toggle {
+    background: linear-gradient(90deg, #73a1e4, #6f92e3);
+    position: absolute;
+    left: 50%;
+    width: 150%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease-in-out;
+    border-radius: 150px 150px 100px 100px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.toggle-panel {
+    width: 33%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    position: absolute;
+    transition: all 1s ease-in-out;
+}
+
+.toggle-panel button {
+    border: 1px solid #eee;
+    background-color: transparent;
+    margin: 20px;
+}
+
+.toggle-panel span {
+    font-size: 16px;
+    font-weight: 520;
+    margin-top: 40px;
+}
+.toggle-left {
+    left: -100%;
+}
+
+.container.active .toggle {
+    transform: translateX(-100%);
+}
+
+.container.active .toggle-right {
+    transform: translateX(500%);
+}
+
+.container.active .toggle-left {
+    transform: translateX(500%);
+}
+
+.container.active .sign-up {
+    z-index: 2;
+    /*ở trên*/
+    opacity: 1;
+    transform: translateX(100%);
+}
+
+.container.active .sign-in {
+    z-index: 1;
+    /*ở trên*/
+    opacity: 0;
+    transform: translateX(100%);
+}

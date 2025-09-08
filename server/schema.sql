@@ -3,9 +3,6 @@
 -- CREATE DATABASE smartdesk CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -- USE smartdesk;
 
--- Nếu dùng Railway thì chỉ cần USE:
-USE railway;
-
 -- ========================
 -- Bảng lưu thông tin thiết bị
 -- ========================
