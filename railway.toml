@@ -1,0 +1,6 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+# Chạy từ server/
+start = "npm start --prefix server"
