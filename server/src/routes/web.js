@@ -3,12 +3,13 @@ const router = express.Router();
 const { getHomePage, getDashboardPage, getReadingsPage,
     getDeviceListPage, getAddDevicePage, postNewDevice,
     getEditDevicePage, postEditDevice, getDeleteAction } = require('../controllers/pageController')
+const { isAuthenticated } = require('../middlewares/auth');
 
 // route homepage
 router.get('/', getHomePage);
 
 // hiển thị thiết bị
-router.get('/dashboard', getDashboardPage);
+router.get('/dashboard', isAuthenticated, getDashboardPage);
 
 //lấy hiện thông tin từ thiết bị
 router.get('/readings/:device_id', getReadingsPage);

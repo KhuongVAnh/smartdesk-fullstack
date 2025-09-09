@@ -1,8 +1,7 @@
 
 const mysql = require('mysql2/promise');
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+require("dotenv").config();
+
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,

@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="container" id="container">
 
         <div class="form-container sign-in">
@@ -17,11 +18,11 @@
                 <h1>Login In</h1>
 
                 <div class="input">
-                    <input type="text" placeholder="Username">
+                    <input type="text" placeholder="Email" name="email">
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="input">
-                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Password" name="password">
                     <i class="fa-solid fa-lock"></i>
                 </div>
 
@@ -50,19 +51,19 @@
                 <h1>Registration</h1>
 
                 <div class="input">
-                    <input type="text" placeholder="Username">
+                    <input type="text" placeholder="Username" name="name">
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="input">
-                    <input type="text" placeholder="example@gmail.com">
+                    <input type="text" placeholder="example@gmail.com" name="email">
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="input">
-                    <input type="text" placeholder="Password">
+                    <input type="text" placeholder="Password" name="password">
                     <i class="fa-solid fa-lock"></i>
                 </div>
 
-                <button type="submit">Create Account</button>
+                <button type="submit" id="create">Create Account</button>
                 <span>or login with social flatforms</span>
                 <div class="social-icons">
                     <a href="#" class="icon">
@@ -86,7 +87,7 @@
             <div class="toggle-panel toggle-left">
                 <h1>Wellcome Back!</h1>
                 <span>Already have an account?</span>
-                <a href="/auth/register"><button id="login">Login In</button></a>
+                <button id="login">Login In</button>
             </div>
             <div class="toggle-panel  toggle-right">
                 <h1>Hello, Wellcome!</h1>
